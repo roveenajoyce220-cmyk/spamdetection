@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Sparkles, AlertCircle, Heart, Lock, FileText, CheckCircle2 } from 'lucide-react';
+import { DOCS_URL, REDOC_URL, HEALTH_URL } from '../services/api';
 
 export const Footer: React.FC = () => {
   return (
@@ -44,9 +45,9 @@ export const Footer: React.FC = () => {
               <li><Link to="/about" className="hover:text-blue-400 transition-colors">8-Stage AI Pipeline</Link></li>
               <li><Link to="/about#signals" className="hover:text-blue-400 transition-colors">14 Detection Signals</Link></li>
               <li><Link to="/about#ethics" className="hover:text-blue-400 transition-colors">Ethics & Transparency Pledge</Link></li>
-              <li><a href="http://127.0.0.1:8000/docs" target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">API Docs (Swagger UI) ↗</a></li>
-              <li><a href="http://127.0.0.1:8000/redoc" target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">API Reference (ReDoc) ↗</a></li>
-              <li><a href="http://127.0.0.1:8000/api/health" target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">Backend Health Status ↗</a></li>
+              <li><a href={DOCS_URL} target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">API Docs (Swagger UI) ↗</a></li>
+              <li><a href={REDOC_URL} target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">API Reference (ReDoc) ↗</a></li>
+              <li><a href={HEALTH_URL} target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">Backend Health Status ↗</a></li>
             </ul>
           </div>
 

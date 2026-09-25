@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Shield, Sparkles, Activity, Globe, Compass, LogIn, User as UserIcon, Menu, X, CheckCircle2, ChevronDown } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { DOCS_URL } from '../services/api';
 
 export const Navbar: React.FC = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -74,7 +75,7 @@ export const Navbar: React.FC = () => {
               );
             })}
             <a
-              href="http://127.0.0.1:8000/docs"
+              href={DOCS_URL}
               target="_blank"
               rel="noreferrer"
               className="px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 transition-all duration-200 flex items-center gap-1"
@@ -203,7 +204,7 @@ export const Navbar: React.FC = () => {
             </Link>
           ))}
           <a
-            href="http://127.0.0.1:8000/docs"
+            href={DOCS_URL}
             target="_blank"
             rel="noreferrer"
             onClick={() => setMobileMenuOpen(false)}

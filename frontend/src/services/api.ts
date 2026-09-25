@@ -1,6 +1,16 @@
-import type { AnalysisResult, DashboardStats, GlobalTrends, SourceIntelligence, User, AuthResponse } from '../types';
+import type {
+  User,
+  AuthResponse,
+  AnalysisResult,
+  DashboardStats,
+  GlobalTrends,
+  SourceIntelligence
+} from '../types';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
+export const API_BASE = import.meta.env.VITE_API_URL || '/api';
+export const DOCS_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '/docs') : '/docs';
+export const REDOC_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '/redoc') : '/redoc';
+export const HEALTH_URL = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '/api/health') : '/api/health';
 
 function getAuthHeaders(): HeadersInit {
   const token = localStorage.getItem('truthlens_token');
@@ -87,7 +97,7 @@ export const api = {
     limit?: number;
     offset?: number;
   }): Promise<AnalysisResult[]> {
-    const url = new URL(`${API_BASE}/news/history`);
+    const url = new URL(`${API_BASE}/news/history`, window.location.origin);
     if (params?.classification) url.searchParams.set('classification', params.classification);
     if (params?.search) url.searchParams.set('search', params.search);
     if (params?.category) url.searchParams.set('category', params.category);
@@ -137,7 +147,7 @@ export const api = {
   },
 
   async getGlobalTrends(params?: { category?: string; country?: string; timeframe?: string }): Promise<GlobalTrends> {
-    const url = new URL(`${API_BASE}/trends/global`);
+    const url = new URL(`${API_BASE}/trends/global`, window.location.origin);
     if (params?.category) url.searchParams.set('category', params.category);
     if (params?.country) url.searchParams.set('country', params.country);
     if (params?.timeframe) url.searchParams.set('timeframe', params.timeframe);
@@ -151,7 +161,7 @@ export const api = {
 
   // Sources Explorer
   async getSources(params?: { search?: string; trust_tier?: string; country?: string }): Promise<SourceIntelligence[]> {
-    const url = new URL(`${API_BASE}/sources`);
+    const url = new URL(`${API_BASE}/sources`, window.location.origin);
     if (params?.search) url.searchParams.set('search', params.search);
     if (params?.trust_tier) url.searchParams.set('trust_tier', params.trust_tier);
     if (params?.country) url.searchParams.set('country', params.country);
